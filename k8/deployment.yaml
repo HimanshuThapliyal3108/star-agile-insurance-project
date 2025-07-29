@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: insurance-app
-          image: your-dockerhub-username/insurance-app:latest
+          image: himanshutha/insurance-app:latest
           ports:
             - containerPort: 8080
