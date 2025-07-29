@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: insurance-app
+  labels:
+    app: insurance-app
 spec:
   replicas: 1
   selector:
@@ -11,16 +13,13 @@ spec:
     metadata:
       labels:
         app: insurance-app
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: "/actuator/prometheus"
+        prometheus.io/port: "8080"
     spec:
       containers:
         - name: insurance-container
           image: himanshutha/star-agile-insurance-project:latest
           ports:
             - containerPort: 8080
-          readinessProbe:
-            httpGet:
-              path: /actuator/health
-              port: 8080
-            initialDelaySeconds: 10
-            periodSeconds: 5
-
