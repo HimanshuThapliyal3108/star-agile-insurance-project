@@ -13,4 +13,4 @@ data:
   - job_name: 'insurance-app'
     metrics_path: '/actuator/prometheus'
     static_configs:
-      - targets: ['<Node-IP>:30081']
+      - targets: ['172.31.86.122:30081']
