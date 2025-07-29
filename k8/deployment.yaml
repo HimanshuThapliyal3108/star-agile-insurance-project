@@ -1,19 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: insurance-app
+  name: star-agile-banking-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: insurance-app
+      app: star-agile-banking
   template:
     metadata:
       labels:
-        app: insurance-app
+        app: star-agile-banking
     spec:
       containers:
-        - name: insurance-app
-          image: himanshutha/insurance-app:latest
+        - name: star-agile-banking
+          image: himanshutha/star-agile-banking-finance:latest
           ports:
             - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 15
