@@ -6,11 +6,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: insurance
+      app: insurance-app
   template:
     metadata:
       labels:
-        app: insurance
+        app: insurance-app
     spec:
       containers:
         - name: insurance-container
@@ -23,3 +23,4 @@ spec:
               port: 8080
             initialDelaySeconds: 10
             periodSeconds: 5
+
